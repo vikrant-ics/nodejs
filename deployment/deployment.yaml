@@ -1,0 +1,42 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: qod-api
+  labels:
+    app: qod-api
+    tier: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qod-api
+  template:
+    metadata:
+      labels:
+        app: qod-api
+    spec:
+      containers:
+        - name: qod-api
+          image: ibmicpcoc/qod-api
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          env:
+            - name: DB_HOST
+              value: mypsqldb
+            - name: DB_USER
+              value: myadmin
+            - name: DB_PASS
+              value: Admin@123
+      securityContext:
+        capabilities:
+          add:
+            - ALL
+        privileged: false
+        allowPrivilegeEscalation: false
+        runAsUser: 0
+      serviceAccount: runasanyuid
+      serviceAccountName: runasanyuid
+      restartPolicy: Always
