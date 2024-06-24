@@ -1,0 +1,14 @@
+{
+	"name": "qod-api",
+	"version": "1.1.0",
+	"private": true,
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"express": "4.*",
+		"mysql": "^2.18.1",
+		"pg": "^8.6.0"
+	},
+	"repository": {}
+}
